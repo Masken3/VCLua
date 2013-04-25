@@ -1,0 +1,219 @@
+Visual Controls For LUA (VCLua)
+
+version 0.3.5
+platform WIN32, LINUX, MacOS
+luaversion 5.1.4
+date 18/11/2010
+--------------
+supports 44 visible controls, 9 dialogs and 5 invisible controls
+
++ added GetScreenSize function 
++ added ItemAtPos function to listboxes
+* Windows theme support added
+* Unix support improved
+* minor bugfixes
+
+version 0.3.4
+platform WIN32, LINUX, MacOS
+luaversion 5.1.4
+date 29/10/2010
+--------------
+supports 44 visible controls, 9 dialogs and 5 invisible controls
+
++ added some anchoring features to visible components 
+  ( http://wiki.lazarus.freepascal.org/Anchor_Sides [thx to Michail Svetlov for the link] )
+* VCL.xxxxxx, contol creating function now accepts property table 
+  [e.g lab01 = VCL.Label{name = "lab01", top = 10, left = 10, caption = "This is a Label"} ]
++ added VCL.FileExists and VCL.DirectoryExist functions
+* minor bugfixes
+
+version 0.3.3
+platform WIN32, LINUX, MacOS
+luaversion 5.1.4
+date 10/02/2010
+--------------
+supports 44 visible controls, 9 dialogs and 5 invisible controls
+
+* html documentation changed
+* EditButton buttonclick event bug corrected
+* StringGrids bugs corrected
+
+version 0.3.2
+platform WIN32, LINUX, MacOS
+luaversion 5.1.4
+date 26/01/2010
+--------------
+supports 44 visible controls, 9 dialogs and 5 invisible controls
+
++ html documentation completed and available at VCLua project homepage
++ FindDlg and ReplaceDlg dialogs added
++ SynEdit highlighters added: c/c++,css,java,pascal,perl,php,sql,tex,xml,html and shellscript
++ SynEdit highlighter now has load/save methods
++ StrinGrid AddRow method added (for insert and add)
+* SynEdit text property handling corrected
+* SynEdit highlighted text can be saved as html
+* [[ ]] handling in Lua highlighter corrected
+* FileListBox Filename property corrected
+* DateEdit value now can be accessed via 'date' or 'text' property
+* fixed icon and image loading from lua table
+* fixed menu find, add, insert methods
+* parent property bug corrected
+
+version 0.3.1
+platform WIN32, LINUX, MacOS
+luaversion 5.1.4
+date 09/01/2010
+--------------
+* 45 visual controls
++ SynEdit component added, with LUA syntax highlighter
+* improved dialogs
++ selfdocumentation support
+
+version 0.3.0
+platform WIN32, LINUX, MacOS
+luaversion 5.1.4
+date 01/11/2009
+--------------
+* VCLua ported to FreePascal
++ tested on Linux(Ubuntu) and windows
+
+version 0.2.3
+platform WIN32
+luaversion 5.1.4
+date 06/08/2009
+--------------
+* minor bugfixes
+* demos corrected, updated
+* documentation updated
+* loading of images from buffer added
+
+version 0.2.2
+platform WIN32
+luaversion 5.1 and 5.0
+date 06/11/2008
+--------------
+* minor bugfixes
+* documentation updated
++ TrayIcon with BalloonHint feature
++ new Form events onMinimize onMaximize
+
+version 0.2.1 alpha
+platform WIN32
+luaversion 5.1 and 5.0
+date 02/29/2008
+--------------
+* minor bugfixes
++ run.exe added to binary package 
++ Form now can load icon from file
++ Skinnable controls
++ Gauge added
+
+version 0.1.10
+platform WIN32
+luaversion 5.1 and 5.0
+date 04/24/2007
+--------------
+* minor bugfixes
+* SetText() method now accepts both table and string as parameter
+* ComboBox:GetText() method corrected
+* lua library bugfixes and improvements
++ ParentName method added for all controls
++ PageControl SetControl method added
++ Tree OnDoubleClick event added
++ Simple ToolBar added (see vcldemo.lua)
+
+version 0.1.9
+platform WIN32
+luaversion 5.1 and 5.0
+date 11/08/2006
+--------------
++ ImageList added
++ Tree has new functions  
+	:Images(imagelist)
+	:SetImage(nodeindex,imageindex)
+	:SetSelectedImage(nodeindex,imageindex)
+* Tree :SetItems function corrected, now accepts the text,data,image and selected properties
+* Tree setdata/getdata bug corrected (thx to Kaptain N [e-home@ukr.net])
+* bugfix in LuaControl module, eventname = nil command now clears the event
+
+version 0.1.8
+platform WIN32
+luaversion 5.1 and 5.0
+date 11/03/2006
+--------------
++ Load(table) method added to menus
++ Find(string) method added to menus
+* font property handling
+* bugfix in LuaEdit module, events now works correctly
+
+version 0.1.7
+platform WIN32
+luaversion 5.1 and 5.0
+date 10/13/2006
+--------------
++ Color names (e.g. VCL.clWhite)
+* xfm.lua now accepts colorname (e.g. <property name="Color" value="clSilver" />)
+* bugfix in common.file module
++ BitButton
++ Bevel
++ Trackbar
++ Timer
++ Image (jpg,png,bmp)
+* SpeedButton (Image can be assigned to the SpeedButton and BitButton)
+
+version 0.1.6
+platform WIN32
+luaversion 5.1 and 5.0
+date 10/09/2006
+--------------
++ manual in html format
++ Tree
++ Tabs
++ ProgressBar
+* minor bugfixes in some components
+
+version 0.1.5
+platform WIN32
+luaversion 5.1
+date 10/01/2006
+--------------
+* Edit's passwordchar bug corrected
+
+version 0.1.3
+platform WIN32
+luaversion 5.0
+date 03/22/2006
+--------------
++ StringGrid
++ OnFileDrop event added to
+	Form, Edit,	Label, Panel, GroupBox, RadioGroup, Memo, ListBox, ComboBox, StatusBar, StringGrid
+
+version 0.1.2
+platform WIN32
+luaversion 5.0
+date 03/04/2006
+--------------
++ Menu
++ Popupmenu
++ SpeedButton
++ Splitter
++ StatusBar
+
+version 0.1 
+platform WIN32
+luaversion 5.0
+date 02/15/2006
+---------------
++ Application
++ Form
++ Button
++ Edit
++ Label
++ Panel
++ CheckBox
++ GroupBox
++ RadioGroup
++ RadioButton
++ Memo
++ ListBox
++ ComboBox

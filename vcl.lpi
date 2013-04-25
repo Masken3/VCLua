@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="\"/>
+    <Version Value="7"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <TargetFileExt Value=".exe"/>
+      <UseAppBundle Value="False"/>
+      <UseXPManifest Value="True"/>
+    </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <CurrentMajorRevNr Value="3"/>
+      <CurrentMinorRevNr Value="5"/>
+      <CurrentBuildNr Value="50"/>
+      <ProjectVersion Value="0.3.5.0"/>
+      <FileDescription Value="VCL Library for Lua5.x"/>
+      <LegalCopyright Value="Copyright (C) 2006,2010 Hi-Project Ltd."/>
+    </VersionInfo>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <Units Count="2">
+      <Unit0>
+        <Filename Value="vcl.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="vcl"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="vcl.manifest"/>
+        <IsPartOfProject Value="True"/>
+      </Unit1>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="8"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="vcl.dll"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)\"/>
+      <OtherUnitFiles Value="$(LazarusDir)\lcl\units\$(TargetCPU)-$(TargetOS)\;$(LazarusDir)\lcl\units\$(TargetCPU)-$(TargetOS)\$(LCLWidgetType)\;$(LazarusDir)\components\codetools\units\$(TargetCPU)-$(TargetOS)\;$(LazarusDir)\components\custom\;$(LazarusDir)\components\synedit\"/>
+      <UnitOutputDirectory Value="obj"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <SyntaxMode Value="Delphi"/>
+        <CStyleOperator Value="False"/>
+        <AllowLabel Value="False"/>
+        <CPPInline Value="False"/>
+        <UseAnsiStrings Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Optimizations>
+        <VariablesInRegisters Value="True"/>
+        <OptimizationLevel Value="0"/>
+      </Optimizations>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <UseLineInfoUnit Value="False"/>
+      </Debugging>
+    </Linking>
+    <Other>
+      <WriteFPCLogo Value="False"/>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+</CONFIG>
