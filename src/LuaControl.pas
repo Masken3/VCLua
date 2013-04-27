@@ -379,7 +379,7 @@ Uses TypInfo,
      LCLProc,
      ComCtrls;
 
-{$I showstack.inc}
+
      
 // ***********************************************
 // LUA Control Methods

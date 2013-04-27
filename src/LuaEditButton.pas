@@ -5,8 +5,6 @@ function CreateEditButton(L: Plua_State): Integer; cdecl;
 type
     TLuaEditButton = class(TEditButton)
         LuaCtl: TLuaControl;
-       published
-        property Text: string read GetText write SetText;
     end;
 implementation
 Uses LuaProperties, Lua;

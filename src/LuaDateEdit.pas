@@ -5,9 +5,7 @@ function CreateDateEdit(L: Plua_State): Integer; cdecl;
 type
     TLuaDateEdit = class(TDateEdit)
         LuaCtl: TLuaControl;
-      published
-        property Date: TDateTime read GetDate write SetDate;
-        property Text: string read GetText write SetText;
+
     end;
 implementation
 Uses LuaProperties, Lua;

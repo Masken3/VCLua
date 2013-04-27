@@ -30,8 +30,7 @@ function CreateSynEditor(L: Plua_State): Integer; cdecl;
 type
     TLuaSynEdit = class(TSynEdit)
          LuaCtl: TLuaControl;
-       published
-         property Text: string read SynGetText write SynSetText;
+
     end;
 
     // Syntax highLighters

@@ -5,9 +5,7 @@ function CreateFileListBox(L: Plua_State): Integer; cdecl;
 type
     TLuaFileListBox = class(TFileListBox)
           LuaCtl: TLuaControl;
-        published
-          property Drive: Char Read FDrive Write SetDrive default ' ';
-          property FileName: String Read FFileName Write SetFileName;
+
     end;
 implementation
 Uses LuaProperties, Lua;

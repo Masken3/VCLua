@@ -2,14 +2,13 @@ library vcl;
 
 {$mode objfpc}{$H+}
 
-{$IFDEF WINDOWS}{$R vcl.rc}{$ENDIF}
+{$R *.res}
 
 uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
-  Interfaces, // this includes the LCL widgetset
-  LResources,
+  Interfaces,
   Forms,
 
   Lua in 'src/Lua.pas',
@@ -134,7 +133,7 @@ end;
 
 exports luaopen_vcl;
 
-initialization
+
 
 // {$I vcl.lrs}
 
