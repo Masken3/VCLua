@@ -1,0 +1,5 @@
+/obj
+backup
+*.dll
+*.lps
+*.res

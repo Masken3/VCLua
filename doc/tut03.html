@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-gb" http-equiv="Content-Language" />
+<meta content="text/html; charset=us-ascii" http-equiv="Content-Type" />
+<title>VCLua v0</title>
+<style type="text/css">
+.style5 {
+	margin-left: 40px;
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	color: #000080;
+}
+.style7 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: small;
+}
+.style10 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: x-small;
+	text-align: center;
+}
+.style11 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-align: center;
+}
+.style14 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-align: center;
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+
+<p class="style11"><strong>VCLua v0.3.2</strong></p>
+<p class="style14">Creating VCLua application step by step</p>
+<p class="style14">Tutorial 3</p>
+<p class="style14"><strong>Events</strong></p>
+<p class="style10"><span lang="hu">&nbsp;<a href="lua/tut03.lua">tut03.lua</a><em>&nbsp;
+<a href="lua/tut03_events.lua">tut03_events.lua</a> </em></span></p>
+<p class="style7">&nbsp;</p>
+<p class="style7"><span lang="hu">Unhandled events may crash your VCLua 
+application, so never forget handle correctly referred VCLua events. </span></p>
+<p class="style7"><span lang="hu">In <a href="tut02.html">tutorial-02</a> the 
+created f<em>ileOpenAction</em> action referred to a lua function, named <em>
+onOpenAction</em></span></p>
+<p class="style5">&nbsp;&nbsp;&nbsp; {name=&quot;<strong><em>fileOpenAction</em></strong>&quot;, 
+caption=&quot;&amp;Open...&quot;, shortcut=&quot;Ctrl+O&quot;, onexecute=&quot;<strong><em>onOpenAction</em></strong>&quot;, 
+imageindex=0}<br />
+</p>
+<p class="style7">To simply catch the event you should write a function named
+<span lang="hu"><em>onOpenAction</em></span></p>
+<p class="style5"><span lang="hu">function onOpenAction(Sender)<br />
+&nbsp;&nbsp;&nbsp; -- do nothig<br />
+&nbsp;&nbsp;&nbsp; VCL.ShowMessage(&quot;Sender was 
+&quot;..Sender.Name..&quot;(&quot;..Sender.ClassName..&quot;)&quot;)&nbsp;&nbsp;&nbsp; <br />
+end</span></p>
+<p class="style7">This sample below shows how to handle in real the event with 
+calling the file open dialog</p>
+<p class="style5">function onOpenAction(Sender)<br />
+&nbsp;&nbsp;&nbsp; local fod = VCL.OpenDlg(mainForm)<br />
+&nbsp;&nbsp;&nbsp; local fileFilter = &quot;Any files|*.*|Text files|*.txt|Lua 
+scripts|*.lua&quot;<br />
+&nbsp;&nbsp;&nbsp; local openOptions = &quot;[ofAllowMultiSelect, ofFileMustExist, 
+ofViewDetail]&quot;<br />
+&nbsp;&nbsp;&nbsp; local filename = fod:Execute({ title=&quot;Open 
+file(s)&quot;,initialdir=&quot;./&quot;,filter=fileFilter,options=openOptions})<br />
+&nbsp;&nbsp;&nbsp; fod:Free()<br />
+&nbsp;&nbsp;&nbsp; if filename==nil then return end<br />
+&nbsp;&nbsp;&nbsp; local s = filename<br />
+&nbsp;&nbsp;&nbsp; if type(filename)==&quot;table&quot; then<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = table.concat(filename,&quot;\n&quot;)<br />
+&nbsp;&nbsp;&nbsp; end<br />
+&nbsp;&nbsp;&nbsp; VCL.ShowMessage(&quot;File(s) to open:\n&quot;..s)<br />
+end </p>
+<p class="style7">Now you have two more unhandled events left referred by 
+actions</p>
+<p class="style5">{name=&quot;fileExitAction&quot;, caption=&quot;&amp;Exit&quot;, shortcut=&quot;Alt+F4&quot;, 
+onexecute=&quot;<strong>onExitAction</strong>&quot;, imageindex=1}, <br />
+{name=&quot;helpAboutAction&quot;, caption=&quot;&amp;About&quot;, shortcut=&quot;Alt+F1&quot;, onexecute=&quot;<strong>onAboutAction</strong>&quot;, 
+imageindex=2},</p>
+<p class="style7">This sample below shows how to handle in real the event with 
+calling the file open dialog</p>
+<p class="style5">function onAboutAction()<br />
+&nbsp;&nbsp;&nbsp; -- it makes no difference who is the original Sender of the 
+event<br />
+&nbsp;&nbsp;&nbsp; print(&quot;not implemented&quot;)<br />
+end<br />
+<br />
+function onExitAction()<br />
+&nbsp;&nbsp;&nbsp; mainForm:Close()<br />
+end</p>
+<p class="style7">The mainForm has one unhandled event too.</p>
+<p class="style5">mainForm._= { position=&quot;podesktopcenter&quot;, height=400, 
+width=600, onclosequery = &quot;<strong>onCloseQueryEventHandler</strong>&quot; }</p>
+<p class="style7">This sample below shows how to handle the form closing</p>
+<p class="style5">function onCloseQueryEventHandler(Sender)<br />
+&nbsp;&nbsp;&nbsp; if VCL.MessageDlg(&quot;Are you 
+sure?&quot;,&quot;mtConfirmation&quot;,{&quot;mbYes&quot;,&quot;mbCancel&quot;})==&quot;mrYes&quot; then<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -- Ok, do the close<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true<br />
+&nbsp;&nbsp;&nbsp; end<br />
+&nbsp;&nbsp;&nbsp; return false -- Reject closing window<br />
+end</p>
+<p class="style7">&nbsp;</p>
+<p class="style5"><br />
+</p>
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-gb" http-equiv="Content-Language" />
+<meta content="text/html; charset=us-ascii" http-equiv="Content-Type" />
+<title>VCLua v0</title>
+<style type="text/css">
+.style4 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+}
+.style5 {
+	margin-left: 40px;
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	color: #000080;
+}
+.style7 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: small;
+}
+.style9 {
+	color: #008000;
+}
+.style10 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: x-small;
+	text-align: center;
+}
+.style11 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-align: center;
+}
+.style14 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-align: center;
+	font-size: small;
+}
+.style15 {
+	font-size: x-small;
+}
+</style>
+</head>
+
+<body>
+
+<p class="style11"><strong>VCLua v0.3.2</strong></p>
+<p class="style14">Creating VCLua application step by step</p>
+<p class="style14">Tutorial 1</p>
+<p class="style14"><strong>Form, Menu and ToolBar</strong></p>
+<p class="style10"><span lang="hu">&nbsp;<a href="lua/tut01.lua">tut01.lua</a><em> </em></span></p>
+<p class="style7">&nbsp;</p>
+<p class="style7"><span lang="hu">Before you start writing your application, be 
+shure that VCLua library is loaded.</span></p>
+<p class="style5"><span lang="hu">require &quot;VCL&quot;</span></p>
+<p class="style7"><span lang="hu">First you should create the main form of the 
+application</span></p>
+<p class="style5"><span class="style4" lang="hu">mainForm = VCL.Form(&quot;mainForm&quot;)</span></p>
+<p class="style7">The properties of the form can be assigned as single property 
+or as array of properties (lua table) </p>
+<p class="style5"><em><span class="style9">-- [property names are 
+case-insensitive]</span><br />
+mainForm.Caption = &quot;My first VCLua application&quot;<br />
+mainForm._= { position=&quot;podesktopcenter&quot;, height=400, width=600, 
+image=&quot;/usr/tmp/MyApp.Ico&quot;}</em></p>
+<p class="style7">To capture an event of the form you should set the proper 
+eventname property. The property value is the name of the global lua function 
+which handles the event.</p>
+<p class="style5">mainForm.onclosequery = &quot;onCloseQueryEventHandler&quot; <br />
+<br />
+function onCloseQueryEventHandler(Sender)<br />
+&nbsp;&nbsp;&nbsp; return true -- the form can be closed<br />
+end</p>
+<p class="style7">If you want use menus, first create the menu and load the 
+menuitems from a lua table</p>
+<p class="style5" style="height: 260px">mainMenu = 
+VCL.MainMenu(mainForm,&quot;mainMenu&quot;)<br />
+mainMenu:LoadFromTable({<br />
+&nbsp;&nbsp;&nbsp; {name=&quot;mmfile&quot;, caption=&quot;&amp;File&quot;, <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; submenu={<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{name=&quot;mmOpen&quot;, caption=&quot;Open...&quot;, onclick=&quot;onMenuOpenClick&quot;, 
+shortcut=&quot;Ctrl+O&quot;}, <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{caption=&quot;-&quot;,},<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{caption=&quot;Exit&quot;, onclick=&quot;onMenuExitClick&quot;, shortcut=&quot;Alt+F4&quot;}, <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; },<br />
+&nbsp;&nbsp;&nbsp; {name=&quot;mmhelp&quot;, caption=&quot;&amp;Help&quot;, RightJustify=true, <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; submenu = {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{caption=&quot;Help&quot;, shortcut=&quot;F1&quot;},<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{caption=&quot;-&quot;,},<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; }<br />
+})</p>
+<p class="style7">To access menuitems at runtime use the find method. Only the 
+manually named items can be found trough this method!</p>
+<p class="style5">mainMenu:Find(&quot;mmhelp&quot;):Add(&quot;mmAbout&quot;)._= {caption=&quot;About&quot;, 
+onclick=&quot;onMenuAboutClick&quot;, enabled=false}</p>
+<p class="style7">Dont forget handle all the living events!</p>
+<p class="style5">function onMenuExitClick()<br />
+&nbsp;&nbsp;&nbsp; mainForm:Close()<br />
+end</p>
+<p class="style7">Using of the Toolbar component improves and beautifies your 
+application. <span class="style15"><em>(Without images the toolbar looks very 
+weird)</em></span></p>
+<p class="style5">mainToolbar = VCL.ToolBar(mainForm,&quot;mainToolbar&quot;)<br />
+mainToolbar:LoadFromTable({<br />
+&nbsp;&nbsp;&nbsp; {name=&quot;mtbOpen&quot;, onclick=&quot;onMenuOpenClick&quot;},<br />
+&nbsp;&nbsp;&nbsp; {name=&quot;mtbExit&quot;, onclick=&quot;onMenuExitClick&quot;},<br />
+})<br />
+mainToolbar:Find(&quot;mtbOpen&quot;).enabled=false</p>
+<p class="style7">Finally start your VCLua application</p>
+<p class="style5">mainForm:ShowModal()</p>
+<p class="style7">Destroy form after modal run ends</p>
+<p class="style5">mainForm:Free()</p>
+<p class="style7">&nbsp;</p>
+<p class="style7">&nbsp;</p>
+<p class="style5"><br />
+</p>
+
+</body>
+
+</html>

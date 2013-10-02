@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="hu" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>VCLua v0.4.0</title>
+<style type="text/css">
+.style5 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: x-small;
+}
+.style6 {
+	margin-left: 120px;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+}
+.style7 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	margin-left: 40px;
+}
+.style8 {
+	font-style: normal;
+	font-weight: normal;
+}
+.style9 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: large;
+}
+.style10 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-weight: bold;
+}
+.style11 {
+	margin-left: 80px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.style12 {
+	margin-left: 160px;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+}
+.style13 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	margin-left: 80px;
+}
+.style16 {
+	border-style: solid;
+	border-width: 1px;
+	margin-left: 120px;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+	text-align: center;
+}
+.style17 {
+	border-style: solid;
+	border-width: 1px;
+	background-color: #C0C0C0;
+}
+.style19 {
+	border-style: solid;
+	border-width: 2px;
+}
+.style23 {
+	border-width: 0px;
+}
+.style24 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+}
+.style25 {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: small;
+	color: #333333;
+	letter-spacing: normal;
+}
+</style>
+</head>
+
+<body>
+
+<p class="style9"><strong>VCLua v0.4.0</strong></p>
+<p class="style24">A&nbsp;visual control library for LUA</p>
+<p class="style5">Copyright (C) 2006,2013 Hi-Project Ltd.</p>
+<p class="style5"></p>
+<table class="style17" style="width: 100%">
+	<tr>
+		<td class="style16" style="width: 15%"><a href="vclua-0.3.5.html">Reference</a></td>
+		<td class="style16" style="width: 13%"><a href="#Using_VCLua_controls">
+		Usage</a></td>
+		<td class="style16" style="width: 14%"><a href="tutorials.html">Tutorials</a></td>
+		<td class="style16" style="width: 14%"><a href="#Downloads">Downloads</a></td>
+		<td class="style16" style="width: 15%"><a href="#Screenshots">
+		Screenshots</a></td>
+		<td class="style16" style="width: 20%"><a href="version.html">Version 
+		history</a>&nbsp;</td>
+	</tr>
+</table>
+<p class="style10"></p>
+<p class="style10">About</p>
+<p class="style10">
+<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium; ">
+<span class="Apple-style-span" style="color: rgb(51, 51, 51); font-family: verdana, arial, helvetica, sans-serif; -webkit-border-horizontal-spacing: 2px; -webkit-border-vertical-spacing: 2px; font-size: small; ">
+VCLua is a toolkit library for building graphical user interfaces. VCLua allows 
+a program to be executed on different os systems without any modification.</span></span></p>
+<p class="style25">VCLua can be compiled with the Free Pascal based
+<a href="http://www.lazarus.freepascal.org">Lazarus</a> compiler into one easy 
+portable file. VCLua currently tested on Windows and Linux.</p>
+<p class="style25">To use VCLua you&#39;ll need only the
+<a href="http://www.lua.org">Lua</a> script interpreter.</p>
+<p class="style25">&nbsp;</p>
+<p class="style10"><a name="Using_VCLua_controls">Using VCLua controls</a></p>
+<p class="style7"><strong><em>Creating controls</em></strong></p>
+<p class="style11">control = VCL.ControlName(parent,name)</p>
+<p class="style6">form = VCL.Form()</p>
+<p class="style11">Creates a new, randomly named form, which is descendant of the 
+mainform. If mainform not exists, this form will be the mainform.</p>
+<p class="style6">button = VCL.Button(form)</p>
+<p class="style11">The example abowe shows, how to create a button as child 
+control on a form as parent.</p>
+<p class="style11"><em>from version 0.3.4</em></p>
+<p class="style11">control = VCL.ControlName{table_of_properties}</p>
+<p class="style6">form = VCL.Form{name=&quot;MainForm&quot;, BorderIcons=&quot;biSystemMenu&quot;}</p>
+<p class="style6">button = VCL.Button(form, {name=&quot;button1&quot;})</p>
+<p class="style11">Creates a new form and button. If the buttons parent not 
+defined then its parent will be the applications mainform. </p>
+<p class="style7"><strong><em>Adjusting properties</em></strong></p>
+<p class="style11">control.propertyname = value</p>
+<p class="style6">form.width = 100</p>
+<p class="style11">to set more properties concurrently:</p>
+<p class="style6">control._ = {width=100, height=100, caption=&quot;Test form&quot;}</p>
+<p class="style7">Handling events</p>
+<p class="style11">The control event is the name of the lua function (not the 
+function!) which handles the event</p>
+<p class="style6">&nbsp;form.onclick = &quot;onFormClick&quot;</p>
+<p class="style6">function onFormClick(sender)</p>
+<p class="style12">print(sender.name, sender.width)</p>
+<p class="style6">end&nbsp;&nbsp; </p>
+<p class="style7">Calling methods</p>
+<p class="style13">C<span class="style8">ontrol methods can be called similar to 
+lua function calls: control:method(params...)</span></p>
+<p class="style6">form:ShowModal()</p>
+<p class="style7">Destroying controls</p>
+<p class="style11">Destroying controls is important to avoid further problems</p>
+<p class="style6">form:Free()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+<p class="style11">This will destroy the form, and all child components of the 
+form.</p>
+
+<p class="style11">&nbsp;</p>
+<p class="style10"><a name="Downloads">Downloads</a></p>
+<p class="style11">Downloads available from
+<a href="https://sourceforge.net/projects/vclua/" target="_blank">VCLua project 
+page</a> at Sourceforge.net</p>
+<p class="style10">&nbsp;</p>
+<p class="style10"><a name="Screenshots">Screenshots</a></p>
+<p class="style11">VCLua on Windows</p>
+<p class="style11">
+<a href="images/form_winxp.jpg">
+<img alt="" class="style23" height="79" src="images/form_winxp.jpg" width="93" /></a>&nbsp;&nbsp;
+<a href="images/vclua_controls_shot.JPG">
+<img alt="VCLua Controls" height="80" src="images/vclua_controls_shot_small.JPG" width="100" class="style19" /></a></p>
+<p class="style11">VCLua (with gtk widgetset) on Ubuntu 9 and (with gtk2 widgetset) on Ubuntu 
+10</p>
+<p class="style11"><a href="images/vclua_ubuntu.jpg">
+<img alt="" class="style19" height="84" src="images/vclua_ubuntu_small.jpg" width="100" /></a>&nbsp;&nbsp;
+<a href="images/form_ubuntu.jpg">
+<img alt="" class="style23" height="89" src="images/form_ubuntu.jpg" width="104" /></a></p>
+<p class="style11">Simple multifile editor application written in LUA using 
+VCLua library</p>
+<p class="style11">
+<a href="images/vcled_shot.JPG">
+<img alt="VCLed editor" height="77" src="images/vcled_shot_small.JPG" width="100" class="style19" /></a>&nbsp;&nbsp;&nbsp;
+</p>
+
+</body>
+
+</html>

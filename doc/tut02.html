@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-gb" http-equiv="Content-Language" />
+<meta content="text/html; charset=us-ascii" http-equiv="Content-Type" />
+<title>VCLua v0</title>
+<style type="text/css">
+.style5 {
+	margin-left: 40px;
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	color: #000080;
+}
+.style7 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: small;
+}
+.style10 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: x-small;
+	text-align: center;
+}
+.style11 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-align: center;
+}
+.style14 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-align: center;
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+
+<p class="style11"><strong>VCLua v0.3.2</strong></p>
+<p class="style14">Creating VCLua application step by step</p>
+<p class="style14">Tutorial 2</p>
+<p class="style14"><strong>Actions</strong></p>
+<p class="style10"><span lang="hu">&nbsp;<a href="lua/tut02.lua">tut02.lua</a><em> </em></span></p>
+<p class="style7">&nbsp;</p>
+<p class="style7"><span lang="hu">With VCLua actions you can improve your 
+applications functionality. Actions can be used both by menus and toolbars, and 
+changing an action property immediately effects these objects.</span></p>
+<p class="style7"><span lang="hu">First you should create an ActionList, and 
+load actions from a lua table</span></p>
+<p class="style5">mainActions = VCL.ActionList(mainform,&quot;mainActions&quot;)<br />
+mainActions:LoadFromTable({ <br />
+&nbsp;&nbsp;&nbsp; {name=&quot;fileOpenAction&quot;, caption=&quot;&amp;Open...&quot;, 
+shortcut=&quot;Ctrl+O&quot;, onexecute=&quot;onOpenAction&quot;, imageindex=0},<br />
+&nbsp;&nbsp;&nbsp; {name=&quot;fileExitAction&quot;, caption=&quot;&amp;Exit&quot;, shortcut=&quot;Alt+F4&quot;, 
+onexecute=&quot;onExitAction&quot;, imageindex=1}, <br />
+&nbsp;&nbsp;&nbsp; {name=&quot;helpAboutAction&quot;, caption=&quot;&amp;About&quot;, shortcut=&quot;Alt+F1&quot;, 
+onexecute=&quot;onAboutAction&quot;, imageindex=2},<br />
+})</p>
+<p class="style7">If the OnExecute method not assigned, then the action will be 
+disabled. To enable/disable the action just assign the onexecute method</p>
+<p class="style5">mainActions:Get(&quot;fileOpenAction&quot;).onexecute=&quot;onOpenAction&quot; -- 
+enabled<br />
+mainActions:Get(&quot;fileOpenAction&quot;).onexecute=nil -- disabled</p>
+<p class="style7">Of course the action in itself do nothing. You need reference 
+it from menu or from toolbar.</p>
+<p class="style7"><span lang="hu">As you see the actions contains refrence to 
+imageindexes. To continue our development we will need add an IimageList to the 
+application. </span></p>
+<p class="style5"><span lang="hu">mainImages = 
+VCL.ImageList(mainForm,&quot;mainImages&quot;)<br />
+mainImages:LoadFromTable({<br />
+&nbsp;&nbsp;&nbsp; &quot;images/open.png&quot;, &quot;images/exit.png&quot;, &quot;images/help.png&quot;<br />
+})</span></p>
+<p class="style7">Now you can build the action based menu and toolbar.</p>
+<p class="style5">mainMenu = VCL.MainMenu(mainForm,&quot;mainMenu&quot;)<br />
+mainMenu.Images = mainImages<br />
+mainMenu:LoadFromTable({<br />
+&nbsp; {name=&quot;mmfile&quot;, caption=&quot;&amp;File&quot;, <br />
+&nbsp;&nbsp;&nbsp; submenu={<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{action=mainActions:Get(&quot;fileOpenAction&quot;)},<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {caption=&quot;-&quot;,},<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{action=mainActions:Get(&quot;fileExitAction&quot;)}, <br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp; },<br />
+&nbsp; {name=&quot;mmhelp&quot;, caption=&quot;&amp;Help&quot;, RightJustify=true, <br />
+&nbsp;&nbsp;&nbsp; submenu = {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{action=mainActions:Get(&quot;helpAboutAction&quot;)},<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp; }<br />
+})<br />
+<br />
+mainToolbar = VCL.ToolBar(mainForm,&quot;mainToolbar&quot;)<br />
+mainToolbar._ = { borderwidth =0, edgeborders = 
+&quot;[ebLeft,ebTop,ebRight,ebBottom]&quot;, edgeinner = &quot;esRaised&quot;, edgeouter=&nbsp; 
+&quot;esLowered&quot;, autosize = true, buttonwidth = 24, buttonheight = 24, align = 
+alTop, flat = true }<br />
+mainToolbar.Images = mainImages<br />
+mainToolbar:LoadFromTable({<br />
+&nbsp;&nbsp;&nbsp; {action=mainActions:Get(&quot;fileOpenAction&quot;)},<br />
+&nbsp;&nbsp;&nbsp; {action=mainActions:Get(&quot;fileExitAction&quot;)},<br />
+&nbsp;&nbsp;&nbsp; {style=&quot;tbsDivider&quot;}, <br />
+&nbsp;&nbsp;&nbsp; {action=mainActions:Get(&quot;helpAboutAction&quot;)},<br />
+})</p>
+<p class="style7">&nbsp;</p>
+<p class="style5"><br />
+</p>
+
+</body>
+
+</html>

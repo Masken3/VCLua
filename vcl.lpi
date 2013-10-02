@@ -14,7 +14,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="5"/>
-      <BuildNr Value="55"/>
+      <BuildNr Value="57"/>
       <StringTable FileDescription="VCL Library for Lua5.x" LegalCopyright="Copyright (C) 2006,2010 Hi-Project Ltd." ProductVersion="0.3.5.0"/>
     </VersionInfo>
     <BuildModes Count="1">

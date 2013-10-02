@@ -71,8 +71,8 @@ begin
   result := 1;
   // count, script, params...
   n := lua_gettop(L);
-  // writeln('>>DEBUG: '+ 'lua_open');
-  SL := lua_open();
+  // writeln('>>DEBUG: '+ 'luaL_newstate');
+  SL := luaL_newstate();
   // writeln('>>DEBUG: '+ 'luaL_openlibs');
   luaL_openlibs(SL);
   pc := trunc(lua_tonumber(L,1));
@@ -246,7 +246,7 @@ end;
 
 function LuaAbsIndex(L: Plua_State; Index: Integer): Integer;
 begin
-  if ((Index = LUA_GLOBALSINDEX) or (Index = LUA_REGISTRYINDEX)) then
+  if ((Index = LUA_REGISTRYINDEX)) then
   begin
     Result := Index;
     Exit;
@@ -361,7 +361,7 @@ function LuaGetMetaFunction(L: Plua_State; Index: Integer; Key: string): lua_CFu
 begin
   Result := nil;
   Index := LuaAbsIndex(L, Index);
-  if not lua_getmetatable(L, Index) then
+  if (lua_getmetatable(L, Index) = 0) then
     Exit;
   LuaGetTable(L, -1, Key);
   if lua_iscfunction(L, -1) then
@@ -374,7 +374,7 @@ procedure LuaSetMetaFunction(L: Plua_State; Index: Integer; Key: string; F: lua_
 //       __eq, __lt, __le, __index, __newindex, __call
 begin
   Index := LuaAbsIndex(L, Index);
-  if not lua_getmetatable(L, Index) then
+  if lua_getmetatable(L, Index) = 0 then
     lua_newtable(L);
 
   LuaRawSetTableFunction(L, -1, Key, F);
